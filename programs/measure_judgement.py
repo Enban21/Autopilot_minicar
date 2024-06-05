@@ -28,6 +28,7 @@ def cleanup():
 
 setup()
 
+#距離に応じて動作判断
 try:
     while True:
         if distance > 35:

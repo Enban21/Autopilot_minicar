@@ -24,8 +24,7 @@ try:
     duration = EndTimeHigh - EndTimeLow # エコーがHIGHの期間を算出
     distance = duration * 17000         # 距離の計算
 
-    print("Distance = ", format(distance, '.2f'), "cm")
-                                      # 計算結果をコンソールに出力
+    print("Distance = ", format(distance, '.2f'), "cm") # 計算結果をコンソールに出力
     time.sleep(0.1)
 except KeyboardInterrupt:
   GPIO.cleanup() 
