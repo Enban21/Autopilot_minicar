@@ -6,8 +6,6 @@ IN1_PIN = 27  # Raspberry PiのGPIOピン番号
 IN2_PIN = 17
 gpio_trig = 22    # トリガーピンのGPIO番号を定義
 gpio_echo = 23    # エコーピンのGPIO番号を定義
-gpio_trig = 22    # トリガーピンのGPIO番号を定義
-gpio_echo = 23    # エコーピンのGPIO番号を定義
 
 
 GPIO.setmode(GPIO.BCM)  # BCMピン番号を使用
@@ -31,7 +29,7 @@ def stop():
 def cleanup():
     GPIO.cleanup()
 
-
+stop()
 
 try:
   while True:
@@ -49,22 +47,20 @@ try:
     duration = EndTimeHigh - EndTimeLow # エコーがHIGHの期間を算出
     distance = duration * 17000         # 距離の計算
 
-    print("Distance = ", format(distance, '.2f'), "cm") # 計算結果をコンソールに出力
+    #print("Distance = ", format(distance, '.2f'), "cm") # 計算結果をコンソールに出力
     time.sleep(0.1)
-except KeyboardInterrupt:
-  GPIO.cleanup() 
+
 
 
 
 #距離に応じて動作判断
-try:
-    while True:
-        if distance > 10:
-            print("モーター前進")
-            forward()
-        else:
-            stop()
-            print("停止")
+
+    if distance > 10:
+        print("モーター前進")
+        forward()
+    else:
+        stop()
+        print("停止")
             
 except KeyboardInterrupt:
   GPIO.cleanup() 
